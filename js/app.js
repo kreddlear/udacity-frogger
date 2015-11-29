@@ -61,6 +61,7 @@ Player.prototype.update = function(dt) {
         this.start();
     };
 
+    // runs checkCollisions to see if it's true, if so restarts
     if (checkCollisions()) {
         this.start();
     };
@@ -72,6 +73,7 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// Receives input from the event listener below
 Player.prototype.handleInput = function(key) {
     switch(key) {
         case 'left':
@@ -94,6 +96,8 @@ Player.prototype.handleInput = function(key) {
     if (this.col > 4) {this.col = 4;};
 };
 
+// Starts player out at the set point
+// Makes things easier with columns/rows per the app engine
 Player.prototype.start = function() {
     this.col = 2;
     this.row = 5;
@@ -105,6 +109,9 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
+// Checks if the enemy and player are in the same row
+// If so, checks if they are sort of in the same place...
+// Returns true/false
 function checkCollisions() {
     var collided = false;
     allEnemies.forEach(function(enemy) {
@@ -119,7 +126,6 @@ function checkCollisions() {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-// TODO: uncomment out the lines in engine.js with the array
 // Place the player object in a variable called player
 
 var allEnemies = [];
